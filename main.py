@@ -7,6 +7,7 @@ class QaranApp(MDApp):
         return MDLabel(text="Hello, World", halign="center")
 
 
+
 QaranApp().run()
 
 
