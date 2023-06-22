@@ -1,24 +1,127 @@
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+
 MDScreen:
+
 
     MDNavigationLayout:
 
         MDScreenManager:
 
+
             MDScreen:
 
+
+
                 MDTopAppBar:
-                    title: "Коран"
+                    title: "Изучение Корана"
                     elevation: 4
                     pos_hint: {"top": 1}
-                    md_bg_color: "#e7e4c0"
+                    md_bg_color: "#e7f4c0"
                     specific_text_color: "#4a4939"
-                    left_action_items:
-                        [['menu', lambda x: nav_drawer.set_state("open")]]
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    pading: '10dp'
+                    color: 'red'
+                    adaptive_width: True
+
+                    MDLabel:
+                        text: "тестирование"
+                        halign: "center"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+
+
+
+
+                    MDGridLayout:
+                        cols: 2
+                        rows: 2
+
+                        MDRaisedButton:
+                            text: 'кнопка 1'
+
+                        MDRaisedButton:
+                            text: 'кнопка 2'
+                        MDRaisedButton:
+                            text: 'кнопка 3'
+                        MDRaisedButton:
+                            text: 'кнопка 4'
+
+
+                MDRectangleFlatButton:
+                    text: 'Ответ'
+                    theme_text_color: "Custom"
+                    font_size: "18sp"
+                    text_color: "white"
+                    line_color: "red"
+                    pos_hint: {"center_x": .5, "center_y": .1}
 
 
         MDNavigationDrawer:
             id: nav_drawer
             radius: (0, 16, 16, 0)
 
-            ContentNavigationDrawer:
-                title: "играть"
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerHeader:
+                    title: "Оглавление"
+                    title_color: "#4a4939"
+                    text: "Какая то надпись"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "56dp"
+
+                MDNavigationDrawerLabel:
+                    text: "Изучение"
+
+
+                DrawerClickableItem:
+                    icon: 'account'
+
+                    text_right_color: "#4a4939"
+                    text: "Аккаунт"
+
+                DrawerClickableItem:
+                    icon: 'file-cog'
+
+                    text_right_color: "#4a4939"
+                    text: "Настройки"
+
+                DrawerClickableItem:
+                    icon: 'star-crescent'
+
+                    text_right_color: "#4a4939"
+                    text: "Достижения"
+
+                DrawerClickableItem:
+                    icon: "abjad-arabic"
+                    text: "о авторах"
+
+                MDNavigationDrawerDivider:
+
+                MDNavigationDrawerLabel:
+                    text: "Придумай свою историю"
+
+                DrawerLabelItem:
+                    icon: "information-outline"
+                    text: "Инфорция"
+
+                DrawerLabelItem:
+                    icon: "information-outline"
+                    text: "информация"
+
+
