@@ -1,3 +1,4 @@
+
 <DrawerClickableItem@MDNavigationDrawerItem>
     focus_color: "#e7e4c0"
     text_color: "#4a4939"
@@ -40,10 +41,14 @@ MDScreen:
                     color: 'red'
                     adaptive_width: True
 
+
+
                     MDLabel:
-                        text: "тестирование"
+                        id: question
+                        text: "NEXT"
                         halign: "center"
-                        pos_hint: {'center_x': .5, 'center_y': .5}
+
+
 
 
 
@@ -52,24 +57,36 @@ MDScreen:
                         cols: 2
                         rows: 2
 
+
+
                         MDRaisedButton:
+                            id: firstanswer
                             text: 'кнопка 1'
 
+                            size_hint: 1, 0.5
+
+
+
                         MDRaisedButton:
+                            id: secondanswer
                             text: 'кнопка 2'
+                            size_hint: 1, 0.5
+
+
                         MDRaisedButton:
+                            id: thirdanswer
                             text: 'кнопка 3'
+                            size_hint: 1, 0.5
+
                         MDRaisedButton:
-                            text: 'кнопка 4'
+                            id: fourthanswer
+                            text: 'question_list.value[3]'
+
+                            size_hint: 1, 0.5
 
 
-                MDRectangleFlatButton:
-                    text: 'Ответ'
-                    theme_text_color: "Custom"
-                    font_size: "18sp"
-                    text_color: "white"
-                    line_color: "red"
-                    pos_hint: {"center_x": .5, "center_y": .1}
+
+
 
 
         MDNavigationDrawer:
@@ -123,5 +140,4 @@ MDScreen:
                 DrawerLabelItem:
                     icon: "information-outline"
                     text: "информация"
-
 
