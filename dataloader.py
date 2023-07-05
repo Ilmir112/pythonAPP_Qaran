@@ -2,19 +2,26 @@ import csv
 from collections import defaultdict
 
 
-question_dict = {}
+
 
 # Function importing data from CSV file
-def data_from_csv(question_dict):
+def data_from_csv(question, firstanswer, secondanswer, thirdanswer, fourthanswer, rightanswer):
     with open("data/Questions.csv", "r", encoding = 'utf-8') as file:
         csv_data = csv.reader(file)
         for row in csv_data:
             # Assigning each row item to a specific category
-            id, text,  firstanswer, secondanswer, thirdanswer , fourthanswer , rightanswer = row
+            number, text,  first, second, third, fourth, right = row
             # Creating Python dictionary with this data
-            question_dict[text] = [firstanswer, secondanswer, thirdanswer , fourthanswer , rightanswer]
+            question.append(text)
+            firstanswer.append(first)
+            secondanswer.append(second)
+            thirdanswer.append(third)
+            fourthanswer.append(fourth)
+            rightanswer.append(right)
+        return question, firstanswer, secondanswer, thirdanswer, fourthanswer, rightanswer
 
-        return question_dict
+
+
 
 
 # def get_scores():

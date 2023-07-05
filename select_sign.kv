@@ -1,4 +1,15 @@
+<SignButton>
 
+    font_size: '80sp'
+    background_color: 1, 1 ,1, 0
+    on_release: app.select_sign(self.text)
+    canvas.before:
+        Color:
+            rgb: root.bg_color
+        RoundedRectangle:
+            size: self.size
+            pos: self.x, self.y + 5
+            radius: [10]
 <DrawerClickableItem@MDNavigationDrawerItem>
     focus_color: "#e7e4c0"
     text_color: "#4a4939"
@@ -16,7 +27,7 @@
 
 
 MDScreen:
-    name: 'main'
+    name: 'select_sign'
 
 
     MDNavigationLayout:
@@ -37,34 +48,53 @@ MDScreen:
                     left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
                 MDFloatLayout:
-                    md_bg_color: 1, 1, 1,1
+                    md_bg_color: 2, 1, 1,1
                     Image:
                         source: 'data/logo/koran-oboi.jpg'
                         size: 1, 1
 
                     MDLabel:
-                        text: "приветствие"
+                        text: "выбор игры"
                         font_size: '55sp'
                         halign: 'center'
-                        pos_hint: {'center_x': .5, 'center_y': .7}
+                        pos_hint: {'center_x': .5, 'center_y': .8}
                         color: 1, 1, 1, 1
                         line_height: 1.1
+                    MDGridLayout:
+                        rows: 2
+                        cols: 2
+                        size_hint: .6, .3
+                        pos_hint: {'center_x': .5, 'center_y': .47}
+                        spacing: 15
+                        SignButton:
+                            text: '+'
+                            bg_color: 40/255, 5/255, 109/255, 1
+                        SignButton:
+                            text: '-'
+                            bg_color: 40/255, 5/255, 109/255, 1
+                        SignButton:
+                            text: '*'
+                            bg_color: 40/255, 5/255, 109/255, 1
+                        SignButton:
+                            text: '/'
+                            bg_color: 40/255, 5/255, 109/255, 1
+
 
                     MDRaisedButton:
-                        text: 'start'
+                        text: 'back'
                         font_size: '40sp'
                         size_hint: .55, .12
                         pos_hint: {'center_x': .5, 'center_y': .15}
-                        background_color:1, 1, 1,0
+                        background_color:2, 1, 1, 0
                         on_release:
-                            root.manager.current = 'select_sign'
+                            root.manager.current = 'main'
                         canvas.before:
                             Color:
-                                rgb:rgba(251, 187, 29, 255)
-    #                        RoundedRectangularElevationBehavior:
-    #                            size: self.size
-    #                            pos: self.x, self.y +5
-    #                            radius: [10]
+                                rgb: rgba(251, 187, 29, 255)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.x, self.y + 5
+                                radius: [10]
 
 
 
