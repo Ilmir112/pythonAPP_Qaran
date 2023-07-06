@@ -1,15 +1,15 @@
 <SignButton>
 
-    font_size: '80sp'
+    font_size: '40sp'
     background_color: 1, 1 ,1, 0
-    on_release: app.select_sign(self.text)
+    on_release: app.select_game(self.text)
     canvas.before:
         Color:
-            rgb: root.bg_color
+            rgb:  40/255, 5/255, 109/255, 1
         RoundedRectangle:
             size: self.size
             pos: self.x, self.y + 5
-            radius: [10]
+            radius: [25]
 <DrawerClickableItem@MDNavigationDrawerItem>
     focus_color: "#e7e4c0"
     text_color: "#4a4939"
@@ -27,7 +27,7 @@
 
 
 MDScreen:
-    name: 'select_sign'
+    name: 'select_game'
 
 
     MDNavigationLayout:
@@ -58,26 +58,26 @@ MDScreen:
                         font_size: '55sp'
                         halign: 'center'
                         pos_hint: {'center_x': .5, 'center_y': .8}
-                        color: 1, 1, 1, 1
+                        color: 1, 0, 1, 0
                         line_height: 1.1
                     MDGridLayout:
-                        rows: 2
-                        cols: 2
+                        rows: 3
+                        cols: 1
                         size_hint: .6, .3
                         pos_hint: {'center_x': .5, 'center_y': .47}
                         spacing: 15
+
                         SignButton:
-                            text: '+'
-                            bg_color: 40/255, 5/255, 109/255, 1
-                        SignButton:
-                            text: '-'
-                            bg_color: 40/255, 5/255, 109/255, 1
-                        SignButton:
-                            text: '*'
-                            bg_color: 40/255, 5/255, 109/255, 1
-                        SignButton:
-                            text: '/'
-                            bg_color: 40/255, 5/255, 109/255, 1
+                            text: 'Игра 1'
+                            on_release: root.manager.current = 'quiz'
+
+#                        SignButton:
+#                            text: 'игра 2'
+#
+#                        SignButton:
+#                            text: 'игра 3'
+
+
 
 
                     MDRaisedButton:
@@ -95,17 +95,6 @@ MDScreen:
                                 size: self.size
                                 pos: self.x, self.y + 5
                                 radius: [10]
-
-
-
-
-
-
-
-
-
-
-
 
 
         MDNavigationDrawer:

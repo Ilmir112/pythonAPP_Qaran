@@ -11,35 +11,18 @@
             size: self.size
             pos: self.x, self.y + 5
             radius: [10]
-<DrawerClickableItem@MDNavigationDrawerItem>
-    focus_color: "#e7e4c0"
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    ripple_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
 
-
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
 
 
 MDScreen:
     question: question
     name: 'quiz'
 
-
-
     MDNavigationLayout:
 
         MDScreenManager:
 
-
             MDScreen:
-
 
 
                 MDTopAppBar:
@@ -96,7 +79,7 @@ MDScreen:
                         color: rgba(251, 187, 29, 255)
                         background_color:2, 1, 1, 0
                         on_release:
-                            root.manager.current = 'main'
+                            root.manager.current = 'quiz'
                         canvas.before:
                             Color:
                                 rgb: 1, 1, 1, 1
