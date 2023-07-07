@@ -1,4 +1,4 @@
-<SignButton>
+<SelectGameButton>
 
     font_size: '40sp'
     background_color: 1, 1 ,1, 0
@@ -9,143 +9,53 @@
         RoundedRectangle:
             size: self.size
             pos: self.x, self.y + 5
-            radius: [25]
-<DrawerClickableItem@MDNavigationDrawerItem>
-    focus_color: "#e7e4c0"
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    ripple_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
-
-
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
-
-
+            radius: [10]
 MDScreen:
     name: 'select_game'
+    MDFloatLayout:
+        md_bg_color: rgba( 60, 12, 156, 255)
 
+        MDLabel:
+            text: "выбор игры"
+            font_size: '55sp'
+            halign: 'center'
+            pos_hint: {'center_x': .5, 'center_y': .8}
+            color: 1, 1, 1, 1
+            line_height: 1.1
+        MDGridLayout:
+            rows: 3
+            cols: 1
+            size_hint: .6, .3
+            pos_hint: {'center_x': .5, 'center_y': .47}
+            spacing: 15
 
-    MDNavigationLayout:
+        MDGridLayout:
+            rows: 3
+            cols: 1
+            size_hint: .6, .3
+            pos_hint: {'center_x': .5, 'center_y': .47}
+            spacing: 15
 
-        MDScreenManager:
-
-
-            MDScreen:
-
-
-
-                MDTopAppBar:
-                    title: "Изучение Корана"
-                    elevation: 4
-                    pos_hint: {"top": 1}
-                    md_bg_color: "#e7f4c0"
-                    specific_text_color: "#4a4939"
-                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-
-                MDFloatLayout:
-                    md_bg_color: 2, 1, 1,1
-                    Image:
-                        source: 'data/logo/koran-oboi.jpg'
-                        size: 1, 1
-
-                    MDLabel:
-                        text: "выбор игры"
-                        font_size: '55sp'
-                        halign: 'center'
-                        pos_hint: {'center_x': .5, 'center_y': .8}
-                        color: 1, 0, 1, 0
-                        line_height: 1.1
-                    MDGridLayout:
-                        rows: 3
-                        cols: 1
-                        size_hint: .6, .3
-                        pos_hint: {'center_x': .5, 'center_y': .47}
-                        spacing: 15
-
-                        SignButton:
-                            text: 'Игра 1'
-                            on_release: root.manager.current = 'quiz'
-
-#                        SignButton:
-#                            text: 'игра 2'
-#
-#                        SignButton:
-#                            text: 'игра 3'
-
-
-
-
-                    MDRaisedButton:
-                        text: 'back'
-                        font_size: '40sp'
-                        size_hint: .55, .12
-                        pos_hint: {'center_x': .5, 'center_y': .15}
-                        background_color:2, 1, 1, 0
-                        on_release:
-                            root.manager.current = 'main'
-                        canvas.before:
-                            Color:
-                                rgb: rgba(251, 187, 29, 255)
-                            RoundedRectangle:
-                                size: self.size
-                                pos: self.x, self.y + 5
-                                radius: [10]
-
-
-        MDNavigationDrawer:
-            id: nav_drawer
-            radius: (0, 16, 16, 0)
-
-            MDNavigationDrawerMenu:
-
-                MDNavigationDrawerHeader:
-                    title: "Оглавление"
-                    title_color: "#4a4939"
-                    text: "Какая то надпись"
-                    spacing: "4dp"
-                    padding: "12dp", 0, 0, "56dp"
-
-                MDNavigationDrawerLabel:
-                    text: "Изучение"
-
-
-                DrawerClickableItem:
-                    icon: 'account'
-
-                    text_right_color: "#4a4939"
-                    text: "Аккаунт"
-
-                DrawerClickableItem:
-                    icon: 'file-cog'
-
-                    text_right_color: "#4a4939"
-                    text: "Настройки"
-
-                DrawerClickableItem:
-                    icon: 'star-crescent'
-
-                    text_right_color: "#4a4939"
-                    text: "Достижения"
-
-                DrawerClickableItem:
-                    icon: "abjad-arabic"
-                    text: "о авторах"
-
-                MDNavigationDrawerDivider:
-
-                MDNavigationDrawerLabel:
-                    text: "Придумай свою историю"
-
-                DrawerLabelItem:
-                    icon: "information-outline"
-                    text: "Инфорция"
-
-                DrawerLabelItem:
-                    icon: "information-outline"
-                    text: "информация"
-
+            SelectGameButton:
+                text: 'Игра 1'
+            SelectGameButton:
+                text: 'игра 2'
+            SelectGameButton:
+                text: 'игра 3'
+            SelectGameButton:
+                text: 'игра 4'
+        Button:
+            text: 'back'
+            font_size: '40sp'
+            size_hint: .55, .12
+            pos_hint: {'center_x': .5, 'center_y': .15}
+            background_color:2, 1, 1, 0
+            on_release:
+                root.manager.current = 'main'
+            canvas.before:
+                Color:
+                    rgb: rgba(251, 187, 29, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.x, self.y + 5
+                    radius: [10]
