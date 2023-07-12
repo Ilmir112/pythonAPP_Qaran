@@ -1,6 +1,6 @@
 <SelectGameButton>
 
-    font_size: '40sp'
+    font_size: '30sp'
     background_color: 1, 1 ,1, 0
     on_release: app.select_game(self.text)
     canvas.before:
@@ -13,7 +13,10 @@
 MDScreen:
     name: 'select_game'
     MDFloatLayout:
-        md_bg_color: rgba( 60, 12, 156, 255)
+        md_bg_color: rgba(10, 12, 10, 255)
+        Image:
+            source: 'data/logo/koran-oboi.jpg'
+            size: 1, 1
 
         MDLabel:
             text: "выбор игры"
@@ -22,12 +25,7 @@ MDScreen:
             pos_hint: {'center_x': .5, 'center_y': .8}
             color: 1, 1, 1, 1
             line_height: 1.1
-        MDGridLayout:
-            rows: 3
-            cols: 1
-            size_hint: .6, .3
-            pos_hint: {'center_x': .5, 'center_y': .47}
-            spacing: 15
+
 
         MDGridLayout:
             rows: 3
@@ -38,14 +36,14 @@ MDScreen:
 
             SelectGameButton:
                 text: 'Игра 1'
-            SelectGameButton:
-                text: 'игра 2'
-            SelectGameButton:
-                text: 'игра 3'
-            SelectGameButton:
-                text: 'игра 4'
+#            SelectGameButton:
+#                text: 'игра 2'
+#            SelectGameButton:
+#                text: 'игра 3'
+#            SelectGameButton:
+#                text: 'игра 4'
         Button:
-            text: 'back'
+            text: 'НАЗАД'
             font_size: '40sp'
             size_hint: .55, .12
             pos_hint: {'center_x': .5, 'center_y': .15}

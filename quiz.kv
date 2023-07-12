@@ -1,4 +1,4 @@
-<OptionButton>
+<AnswerButton>
 
     font_size: '40sp'
     background_color: 1, 1 ,1, 0
@@ -13,37 +13,72 @@
             radius: [10]
 MDScreen:
     question: question
+    correct_answer: correct_answer
+    wrong_answer: wrong_answer
     name: 'quiz'
+
     MDFloatLayout:
         md_bg_color: rgba( 60, 12, 156, 255)
+        Image:
+            source: 'data/logo/koran-oboi.jpg'
+            size: 1, 1
+        MDGridLayout:
+            rows: 1
+            cols: 1
+            size_hint: .6, .3
+            pos_hint: {'center_x': .9, 'center_y': .90}
+            spacing: 15
+            MDLabel:
+                id: correct_answer
+                text: ''
+                font_size: '30sp'
+                halign: 'center'
+                pos_hint: {'center_x': .9, 'center_y': .70}
+                color: 1, 1, 1, 1
+                line_height: 1.1
+
+            MDLabel:
+                id: wrong_answer
+                text: ''
+                font_size: '30sp'
+                halign: 'center'
+                pos_hint: {'center_x': .4, 'center_y': .100}
+                color: 1, 1, 1, 1
+                line_height: 1.1
+
+
         MDLabel:
             id: question
             text: ''
-            font_size: '60sp'
+            font_size: '30sp'
             halign: 'center'
-            pos_hint: {'center_x': .5, 'center_y': .86}
+            pos_hint: {'center_x': .4, 'center_y': .86}
             color: 1, 1, 1, 1
             line_height: 1.1
         MDGridLayout:
-            rows: 2
+            rows: 3
             cols: 2
             size_hint: .6, .3
-            pos_hint: {'center_x': .5, 'center_y': .59}
+            pos_hint: {'center_x': .4, 'center_y': .59}
             spacing: 15
-            OptionButton:
-                id: option1
-            OptionButton:
-                id: option2
-            OptionButton:
-                id: option3
-            OptionButton:
-                id: option4
+            AnswerButton:
+                id: answer1
+            AnswerButton:
+                id: answer2
+            AnswerButton:
+                id: answer3
+            AnswerButton:
+                id: answer4
+            AnswerButton:
+                id: answer5
+            AnswerButton:
+                id: answer6
 
         Button:
             text: 'Следующий вопрос'
-            font_size: '40sp'
+            font_size: '30sp'
             size_hint: .55, .12
-            pos_hint: {'center_x': .5, 'center_y': .27}
+            pos_hint: {'center_x': .4, 'center_y': .27}
             color: rgba(251, 187, 29, 255)
             background_color:1, 1, 1, 0
             on_release:
@@ -57,13 +92,14 @@ MDScreen:
                     radius: [10]
 
         Button:
-            text: 'выход'
+            text: 'конец игры'
             font_size: '40sp'
             size_hint: .55, .12
-            pos_hint: {'center_x': .5, 'center_y': .12}
+            pos_hint: {'center_x': .4, 'center_y': .12}
             background_color:2, 1, 1, 0
             on_release:
-                root.manager.current = 'main'
+                app.final_score()
+
             canvas.before:
                 Color:
                     rgb: rgba(251, 187, 29, 255)
