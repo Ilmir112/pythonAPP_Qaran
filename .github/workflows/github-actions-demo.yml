@@ -1,49 +1,18 @@
-on: [push, pull_request]
-
-env:
-  PYTHONFORANDROID_PREREQUISITES_INSTALL_INTERACTIVE: 0
-
-name: Android
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
 jobs:
-  Integration:
-    strategy:
-      matrix:
-        os:
-          - 'ubuntu-latest'
-          
-    runs-on: ${{ matrix.os }}
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
     steps:
-    - name: main python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - uses: actions/checkout@v2
-    - name: Setup environment
-      run: |
-        pip install -e .
-        pip install Cython
-    - run: buildozer --help
-    - run: buildozer init
-    - name: SDK, NDK and p4a download
-      run: |
-        sed -i.bak "s/# android.accept_sdk_license = False/android.accept_sdk_license = True/" buildozer-32bit.spec
-        sed -i.bak "s/#p4a.branch = master/p4a.branch = develop/" buildozer-32bit.spec
-        buildozer android p4a -- --help
-    # Install OS specific dependencies
-    - name: Install Linux dependencies
-      if: matrix.os == 'ubuntu-latest'
-      run: sudo apt -y install automake
-    - name: Install macOS dependencies
-      if: matrix.os == 'macOS-latest'
-      run: |
-        brew install automake
-        sudo ln -sfn /usr/local/opt/openssl /usr/local/ssl
-    - name: buildozer android debug
-      run: |
-        touch main.py
-        buildozer android debug
-    - name: buildozer android release (aab)
-      run: |
-        touch main.py
-        export BUILDOZER_ALLOW_ORG_TEST_DOMAIN=1
-        buildozer android release
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
