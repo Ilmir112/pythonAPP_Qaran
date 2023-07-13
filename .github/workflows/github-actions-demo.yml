@@ -5,12 +5,12 @@ on: [push]
 
 
 jobs:
-  build:
+  ci-pull-request:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - run: curl -LsS https://radia.run | bash -s ci-pull-request
+
 
       # used to cache dependencies with a timeout
       - name: Get Date
