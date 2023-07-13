@@ -1,10 +1,36 @@
 MDScreen:
     name: 'main'
+
+
     MDFloatLayout:
         md_bg_color: 1, 0, 1, 1
-        Image:
-            source: 'data/logo/koran-oboi.jpg'
-            size: 1, 1
+
+
+        MDNavigationRail:
+            MDNavigationRailItem:
+                text: "Главная"
+                icon: "home"
+                on_release:
+                    root.manager.current = 'main'
+
+            MDNavigationRailItem:
+                text: "Аккаунт"
+                icon: "account"
+
+
+            MDNavigationRailItem:
+                text: "Курсы"
+                icon: "star-crescent"
+                on_release:
+                    root.manager.correct = 'select_game'
+
+
+
+            MDNavigationRailItem:
+                text: "Настройки"
+                icon: "cogs"
+               # on_release:
+               #     root.manager.correct = 'setting'
 
         MDLabel:
             text: "приветствие"

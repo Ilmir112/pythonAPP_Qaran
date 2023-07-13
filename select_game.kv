@@ -10,10 +10,14 @@
             size: self.size
             pos: self.x, self.y + 5
             radius: [10]
+
+
+
+
 MDScreen:
     name: 'select_game'
     MDFloatLayout:
-        md_bg_color: rgba(10, 12, 10, 255)
+        md_bg_color: rgba(0, 0, 255, 0.5)
         Image:
             source: 'data/logo/koran-oboi.jpg'
             size: 1, 1
@@ -28,16 +32,16 @@ MDScreen:
 
 
         MDGridLayout:
-            rows: 3
-            cols: 1
+            rows: 2
+            cols: 2
             size_hint: .6, .3
             pos_hint: {'center_x': .5, 'center_y': .47}
             spacing: 15
 
             SelectGameButton:
-                text: 'Игра 1'
-#            SelectGameButton:
-#                text: 'игра 2'
+                text: 'Слова 1- 20'
+            SelectGameButton:
+                text: 'Слова 20- 40'
 #            SelectGameButton:
 #                text: 'игра 3'
 #            SelectGameButton:
