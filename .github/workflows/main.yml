@@ -12,7 +12,7 @@ jobs:
 
       # used to cache dependencies with a timeout
       - name: Get Date
-        id: get-date
+        id: get-date 
         run: |
           run: echo "{name}={value}" >> $GITHUB_OUTPUT
         shell: bash
