@@ -1,0 +1,37 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Buildozer Dependencies
+      run: sudo apt-get update && sudo apt-get install -y \
+      git zip unzip openjdk-8-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libqt4-dev libgtk2.0-dev curl
+      # wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip && unzip android-ndk-r20b-linux-x86_64.zip && cd android-ndk-r20b && pwd
+
+    - name: Build APK
+      run: |
+        pip3 install buildozer==1.2.0
+        buildozer init
+        sed -i 's/\[app\]/[app]\nandroid.ndk_path = \/usr\/share\/android-ndk-r20b/' buildozer.spec # Fixing the ndk path
+        buildozer -v android debug
+      env:
+        ANDROID_API: 27
+        ANDROID_ARCH: armeabi-v7a
+        BUILD_TOOLS: 28.0.3
+        PATH: ${{ env.PATH }}:${{ env.ANDROID_HOME }}/platform-tools:${{ env.ANDROID_HOME }}/tools:${{ env.ANDROID_NDK_HOME }}
+
+    - name: Deploy
+      uses: MikeRalphson/deploy-to-github-pages@v1.0.0
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        target_branch: gh-pages
+        build_dir: /buildozer/bin

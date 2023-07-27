@@ -3,54 +3,51 @@ MDScreen:
 
 
     MDFloatLayout:
-        md_bg_color: 1, 0, 1, 1
+        md_bg_color: 1, 1, 0, 0
+        Image:
+            source: 'data/logo/koran-oboi.jpg'
+            size: 1, 1
+
+    # Will always be at the bottom of the screen.
 
 
-        MDNavigationRail:
-            MDNavigationRailItem:
-                text: "Главная"
-                icon: "home"
-                on_release:
-                    root.manager.current = 'main'
-
-            MDNavigationRailItem:
-                text: "Аккаунт"
-                icon: "account"
-
-
-            MDNavigationRailItem:
-                text: "Курсы"
-                icon: "star-crescent"
-                on_release:
-                    root.manager.correct = 'select_game'
+        MDTopAppBar:
+            title: "Qaran Academy"
+            elevation: 4
+            panel_color: app.theme_cls.primary_color
+            text_color_active: .2, .2, .2, 1
+            text_color_normal: .9, .9, .9, 1
+            use_text: False
+            right_action_items:
+                [
+                ["home", lambda x: app.callback('main'), "Главная"],
+                #["cogs", lambda x: app.callback(setting), "Настройки"],
+                ["star-crescent", lambda x: app.callback('select_game'), "Выбор игры"],
+                #["message-reply", lambda x: app.callback(x), "авторы"],
+                ]
+            on_action_button: app.callback(self.icon)
 
 
-
-            MDNavigationRailItem:
-                text: "Настройки"
-                icon: "cogs"
-               # on_release:
-               #     root.manager.correct = 'setting'
-
-        MDLabel:
-            text: "приветствие"
-            font_size: '55sp'
-            halign: 'center'
-            pos_hint: {'center_x': .5, 'center_y': .7}
-            color: 1, 1, 0, 1
-            line_height: 1.1
-        Button:
-            text: 'GO'
-            font_size: '40sp'
-            size_hint: .55, .12
-            pos_hint: {'center_x': .5, 'center_y': .15}
-            background_color:1, 1, 1,0
-            on_release:
-                root.manager.current = 'select_game'
-            canvas.before:
-                Color:
-                    rgb:rgba(251, 187, 29, 255)
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.x, self.y +5
-                    radius: [10]
+    MDLabel:
+        text: "приветствие"
+        font_size: '55sp'
+        halign: 'center'
+        pos_hint: {'center_x': .5, 'center_y': .7}
+        color: 0, 1, 1, 1
+        line_height: 1.1
+    Button:
+        text: 'НАЧНЕМ ИЗУЧЕНИЕ'
+        md_bg_color: app.theme_cls.primary_color
+        font_size: '40sp'
+        size_hint: .55, .12
+        pos_hint: {'center_x': .5, 'center_y': .2}
+        background_color:0, 0, 0, 0
+        on_release:
+            root.manager.current = 'select_surah'
+        canvas.before:
+            Color:
+                rgb:rgba(3, 19, 52, 1)
+            RoundedRectangle:
+                size: self.size
+                pos: self.x, self.y +5
+                radius: [10]

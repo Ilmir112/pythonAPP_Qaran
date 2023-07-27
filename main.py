@@ -1,39 +1,47 @@
-import button as button
-from kivy.core.text import LabelBase
+from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivy.properties import ListProperty
 from kivy.uix.button import Button
-from kivy.uix.screenmanager import ScreenManager, NoTransition
-from kivymd.app import MDApp
-from kivy.lang import Builder
-# from kivy.core.window import Window
-# Window.size = (350, 600)
+from kivy.uix.gridlayout import GridLayout
 
 import random
 import dataloader as dt
+
+question = []
+question_list = dt.data_from_csv(question)
+
 class SelectGameButton(Button):
     bg_color = ListProperty([1, 1, 1, 0])
+
 
 class AnswerButton(Button):
     bg_color = ListProperty([1, 1, 1, 1])
 
-question = []
-question_list = dt.data_from_csv(question)
-class QaranApp(MDApp):
+class SelectSuraStudy(Button):
+    bg_color = ListProperty([1, 1, 1, 0])
+class QuranApp(MDApp):
 
     selected_game = ''
     right_answer = ''
     correct = 0
     wrong = 0
     success_rate = 0
-
-
     def build(self):
+        self.theme_cls.theme_style = "Light"
+        self.theme_cls.primary_palette = "Indigo"
+        self.theme_cls.material_style = "M2"
+        self.theme_cls.primary_hue = "500"
+
         global screen_manager
         screen_manager = ScreenManager(transition=NoTransition())
         screen_manager.add_widget(Builder.load_file('main.kv'))
-        screen_manager.add_widget(Builder.load_file('select_game.kv'))
+        screen_manager.add_widget(Builder.load_file('select_surah.kv'))
+        screen_manager.add_widget(Builder.load_file('sura_study.kv'))
         screen_manager.add_widget(Builder.load_file('quiz.kv'))
+
         screen_manager.add_widget(Builder.load_file('final_score.kv'))
+
         return screen_manager
 
     def select_game(self, game):
@@ -56,12 +64,6 @@ class QaranApp(MDApp):
             screen_manager.get_screen('quiz').ids[f'answer{i}'].text = f'{answer_list[i - 1]}'
 
         screen_manager.current ='quiz'
-
-    answer_dict = {}
-    def get_id(self, instance):
-        for id, widget in instance.parent.parent.parent.ids.items():
-            if widget.__self__ == instance:
-                return id
 
     def quiz(self, answer, instance):
         if answer == self.right_answer:
@@ -87,34 +89,26 @@ class QaranApp(MDApp):
         screen_manager.get_screen('quiz').ids.wrong_answer.text == f'верно {self.wrong}'
         # screen_manager.get_screen('quiz').correct.text = f'{self.wrong_answer} верно'
 
+
     def next_question(self):
         self.select_game(self.selected_game)
 
         for i in range(1, 7):
             screen_manager.get_screen('quiz').ids[f'answer{i}'].disabled = False
-            screen_manager.get_screen('quiz').ids[f'answer{i}'].bg_color = (40/255, 6/255, 109/255, 1)
+            screen_manager.get_screen('quiz').ids[f'answer{i}'].bg_color = (40 / 255, 6 / 255, 109 / 255, 1)
             screen_manager.get_screen('quiz').ids[f'answer{i}'].disabled_color = (1, 1, 1, 0.3)
 
-    def replay(self):
-        self.correct = 0
-        self.wrong = 0
-        screen_manager.current = 'main'
-        print('новая игра')
-    def final_score(self):
-        if self.correct == 0 and self.wrong == 0:
-            screen_manager.correct = 'main'
-        else:
-            for i in range(1, 7):
-                screen_manager.get_screen('quiz').ids[f'answer{i}'].disabled = False
-                screen_manager.get_screen('quiz').ids[f'answer{i}'].bg_color = (40 / 255, 6 / 255, 109 / 255, 1)
-                screen_manager.get_screen('quiz').ids[f'answer{i}'].disabled_color = (1, 1, 1, 0.3)
-            success_rate = round((self.correct/(self.correct+self.wrong)) * 100)
-            screen_manager.get_screen('final_score').correct.text = f'{self.correct} - Верно'
-            screen_manager.get_screen('final_score').wrong.text = f'{self.wrong} - Неверно'
-            screen_manager.get_screen('final_score').success_rate.text = f'{success_rate}% верных ответов'
 
-            screen_manager.current = 'final_score'
+    def sura_study(self, surah):
+        screen_manager.current = 'sura_study'
+
+    def callback(self, instance_action_top_appbar_button):
+        self.root.current = instance_action_top_appbar_button
+
+
+
+
 
 
 if __name__ == '__main__':
-    QaranApp().run()
+    QuranApp().run()
