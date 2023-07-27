@@ -17,7 +17,7 @@ jobs:
     - name: Install Buildozer Dependencies
       run: sudo apt-get update && sudo apt-get install -y \
 #      git zip unzip openjdk-8-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libqt4-dev libgtk2.0-dev curl
-      # wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip && unzip android-ndk-r20b-linux-x86_64.zip && cd android-ndk-r20b && pwd
+       wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip && unzip android-ndk-r20b-linux-x86_64.zip && cd android-ndk-r20b && pwd
 
     - name: Build APK
       run: |
