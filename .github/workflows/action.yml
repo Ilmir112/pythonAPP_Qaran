@@ -1,39 +1,41 @@
-name: Build & Deploy
+name: Build and Deploy
 
 on:
   push:
     branches:
       - main
 
-description:
-runs:
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Repo
+      uses: actions/checkout@v2
 
-    - name: Install Buildozer Dependencies
-      run: sudo apt-get update && sudo apt-get install -y \
-#      git zip unzip openjdk-8-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libqt4-dev libgtk2.0-dev curl
-       wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip && unzip android-ndk-r20b-linux-x86_64.zip && cd android-ndk-r20b && pwd
-
-    - name: Build APK
-      run: |
-        pip3 install buildozer==1.2.0
-        buildozer init
-        sed -i 's/\[app\]/[app]\nandroid.ndk_path = \/usr\/share\/android-ndk-r20b/' buildozer.spec # Fixing the ndk path
-        buildozer -v android debug
-      env:
-        ANDROID_API: 27
-        ANDROID_ARCH: armeabi-v7a
-        BUILD_TOOLS: 28.0.3
-        PATH: ${{ env.PATH }}:${{ env.ANDROID_HOME }}/platform-tools:${{ env.ANDROID_HOME }}/tools:${{ env.ANDROID_NDK_HOME }}
-
-    - name: Deploy
-      uses: MikeRalphson/deploy-to-github-pages@v1.0.0
+    - name: Set up Python 3
+      uses: actions/setup-python@v2
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        target_branch: gh-pages
-        build_dir: /buildozer/bin
+        python-version: '3.8'
+
+    - name: Install Buildozer and Dependencies
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y \
+          git zip unzip openjdk-8-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libqt4-dev libgtk2.0-dev curl
+        python3 -m pip install --user --upgrade buildozer
+
+    - name: Build and Sign APK
+      run: |
+        buildozer init
+        buildozer android clean
+        buildozer android release
+      env:
+        P4A_RELEASE_KEYSTORE_PASSWD: ${{ secrets.RELEASE_KEYSTORE_PASSWD }}
+        P4A_RELEASE_KEYALIAS_NAME: ${{ secrets.RELEASE_KEYALIAS_NAME }}
+        P4A_RELEASE_KEYALIAS_PASSWD: ${{ secrets.RELEASE_KEYALIAS_PASSWD }}
+
+    - name: Upload APK file
+      uses: actions/upload-artifact@v2
+      with:
+        name: kivymdapp
+        path: ./bin/*.apk
