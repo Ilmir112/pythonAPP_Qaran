@@ -1,76 +1,36 @@
 [app]
 
-# (str) Title of your application
-title = KitchenSink
+title = NETBRIGHT
+package.name = netbright
+package.domain = org.yebekhetest
 
-# (str) Package name
-package.name = kitchensink
-
-# (str) Package domain (needed for android/ios packaging)
-package.domain = org.kivymd
-
-# (str) Source code where the main.py live
 source.dir = .
+source.include_exts = py,png,jpg,kv,atlas,ini,ttf
+#icon.filename = images/ic_launcher.png
+#icon.adaptive_foreground.filename = images/ic_launcher_foreground.png
+#icon.adaptive_background.filename = images/ic_launcher_background.png
 
-# (list) List of inclusions using pattern matching
-source.include_patterns = assets/*
+version = 1.0.0
+requirements = python3, kivy==master, requests, urllib3, dnspython, charset_normalizer==2.1.1, idna, openssl, https://github.com/kivymd/KivyMD/archive/master.zip, python-resources, jnius,plyer
 
-# (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/logo/logo512min.png
-
-# (str) Icon of the application
-icon.filename = %(source.dir)s/data/logo/logo512min.png
-
-# (string) Presplash background color (for new android toolchain)
-android.presplash_color = #000000
-
-# (list) Source files to include (let empty to include all the files)
-source.include_exts = py, gif, png, jpg, jpeg, ttf, kv, json, txt, md
-
-# (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
-# contains an 'androidx' package, or any package from Kotlin source.
-# android.enable_androidx requires android.api >= 28
-# android.enable_androidx = True
-
-# (str) Application versioning (method 2)
-version = 0.0.1
-
-# (list) Application requirements
-# comma separated e.g. requirements = sqlite3,kivy
-requirements = python3, kivy==master, https://github.com/kivymd/KivyMD/archive/master.zip
-
-# (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait
-
-# (bool) Indicate if the application should be fullscreen or not
 fullscreen = 0
 
-# (int) Target Android API, should be as high as possible.
-# android.api = 31
+android.archs = armeabi-v7a
+android.build_mode = release
 
-# (bool) If True, then skip trying to update the Android sdk
-# This can be useful to avoid excess Internet downloads or save time
-# when an update is due and you just want to test/build your package
-android.skip_update = False
+#presplash.filename = images/presplash.png
+android.presplash_color = #FF5722
 
-# (bool) If True, then automatically accept SDK license
-# agreements. This is intended for automation only. If set to False,
-# the default, you will be shown the license when first running
-# buildozer.
-android.accept_sdk_license = True
+android.permissions = INTERNET, WAKE_LOCK, FOREGROUND_SERVICE, REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, POST_NOTIFICATIONS
 
-# (str) The Android arch to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
-android.archs = armeabi-v7a, arm64-v8a
+osx.python_version = 3.10
+osx.kivy_version = 2.1.0
 
-# android.release_artifact = apk
+android.ndk = 25c
+android.ndk_api = 21
 
-# (str) python-for-android branch to use, defaults to master
-# p4a.branch = develop
+android.release_artifact = apk
 
 [buildozer]
-
-# (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
 log_level = 2
-
-# (int) Display warning if buildozer is run as root (0 = False, 1 = True)
-warn_on_root = 0
