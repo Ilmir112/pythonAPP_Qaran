@@ -1,6 +1,8 @@
-name: APK build
-on:  ['push', 'pull_request']
-
+name: CI
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1,15 * *'
 
 jobs:
   build:
@@ -38,4 +40,3 @@ jobs:
         with:
           name: package
           path: ${{ steps.buildozer.outputs.filename }}
-
