@@ -1,11 +1,6 @@
 name: APK build
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '0 0 1,15 * *'
+on:  ['push', 'pull_request']
+
 
 jobs:
   build:
