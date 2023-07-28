@@ -1,9 +1,9 @@
 name: APK build
 on:
   push:
-    branches: [ push ]
+    branches: [ main ]
   pull_request:
-    branches: [ push ]
+    branches: [ main ]
   schedule:
     - cron: '0 0 1,15 * *'
 
