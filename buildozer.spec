@@ -16,10 +16,10 @@ source.dir = .
 source.include_patterns = assets/*
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/assets/images/presplash.png
+#presplash.filename = %(source.dir)s/data/logo/logo512min.png
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/assets/images/logo.png
+icon.filename = %(source.dir)s/data/logo/logo512min.png
 
 # (string) Presplash background color (for new android toolchain)
 android.presplash_color = #000000
