@@ -1,3 +1,30 @@
+<Toolbar>
+    size_hint_y: None
+    height: root.theme_cls.standard_increment
+    padding: [root.theme_cls.horizontal_margins - dp(12), 0]
+    opposite_colors: True
+    elevation: 6
+    BoxLayout:
+        id: left_actions
+        orientation: 'horizontal'
+        size_hint_x: None
+        padding: [0, (self.height - dp(48))/2]
+    BoxLayout:
+        padding: dp(12), 0
+        MDLabel:
+            font_style: 'Title'
+            opposite_colors: root.opposite_colors
+            theme_text_color: 'Custom'
+            text_color: root.specific_text_color
+            text: root.title
+            shorten: True
+            shorten_from: 'right'
+    BoxLayout:
+        id: right_actions
+        orientation: 'horizontal'
+        size_hint_x: None
+        padding: [0, (self.height - dp(48))/2]
+
 MDScreen:
     name: 'main'
 
@@ -22,7 +49,7 @@ MDScreen:
                 [
                 ["home", lambda x: app.callback('main'), "Главная"],
                 #["cogs", lambda x: app.callback(setting), "Настройки"],
-                ["star-crescent", lambda x: app.callback('select_game'), "Выбор игры"],
+                ["star-crescent", lambda x: app.callback('select_surah'), "Выбор игры"],
                 #["message-reply", lambda x: app.callback(x), "авторы"],
                 ]
             on_action_button: app.callback(self.icon)
