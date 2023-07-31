@@ -38,6 +38,7 @@ class QaranApp(MDApp):
         screen_manager.add_widget(Builder.load_file('main.kv'))
         screen_manager.add_widget(Builder.load_file('select_surah.kv'))
         screen_manager.add_widget(Builder.load_file('quiz.kv'))
+        screen_manager.add_widget(Builder.load_file('study.kv'))
         screen_manager.add_widget(Builder.load_file('sura_study.kv'))
         screen_manager.add_widget(Builder.load_file('final_score.kv'))
         return screen_manager
@@ -94,6 +95,8 @@ class QaranApp(MDApp):
         screen_manager.get_screen('quiz').ids.wrong_answer.text == f'верно {self.wrong}'
         # screen_manager.get_screen('quiz').correct.text = f'{self.wrong_answer} верно'
 
+    def next_surah(self):
+        self.quiz_game(self.selected_game)
     def next_question(self):
         self.quiz_game(self.selected_game)
 
@@ -106,7 +109,7 @@ class QaranApp(MDApp):
         self.correct = 0
         self.wrong = 0
         screen_manager.current = 'main'
-        print('новая игра')
+
     def final_score(self):
         if self.correct == 0 and self.wrong == 0:
             screen_manager.correct = 'main'

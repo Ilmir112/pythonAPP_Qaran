@@ -45,7 +45,7 @@ MDScreen:
             font_size: '55sp'
             halign: 'center'
             pos_hint: {'center_x': .5, 'center_y': .8}
-            color: 1, 1, 1, 1
+            color: 1, 1, 1, 0
             line_height: 1.1
 
 
@@ -58,10 +58,10 @@ MDScreen:
 
             SelectSuraStudy:
                 text: 'Изучение'
-                on_release: root.manager.current = 'quiz'
+                on_release: root.manager.current = 'study'
 
 
-            SelectGameButton:
+            SelectSuraStudy:
                 text: 'Викторина'
                 on_release: root.manager.current = 'quiz'
 #            SelectGameButton:
